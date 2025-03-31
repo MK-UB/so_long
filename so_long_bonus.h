@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melayoub <melayoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 21:20:21 by melayoub          #+#    #+#             */
-/*   Updated: 2023/02/24 14:09:37 by melayoub         ###   ########.fr       */
+/*   Created: 2023/02/20 21:09:29 by melayoub          #+#    #+#             */
+/*   Updated: 2023/02/22 12:57:11 by melayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <mlx.h>
 # include <stdlib.h>
@@ -27,6 +27,7 @@ typedef struct s_list
 	int		y;
 	int		i;
 	int		j;
+	void	*plancton;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*wall;
@@ -47,7 +48,7 @@ typedef struct s_list
 	int		steps;
 	char	**matrice;
 }				t_list;
-void	player_pos(t_list *content);
+
 void	ft_check_extension(t_list *content);
 void	ft_parssing(t_list *content);
 void	ft_close(char **str);
@@ -81,8 +82,10 @@ void	ft_flood_fill(t_list *content, int xp, int yp);
 int		find_and_act(t_list *content);
 int		map_height(char **str);
 void	setup_imgs(t_list *content);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
+int		render_next_frame(t_list *content);
+void	enemy_move(t_list *content);
+char	*ft_itoa(int n);
+void	mini_main(t_list *content);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5

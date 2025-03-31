@@ -6,11 +6,11 @@
 /*   By: melayoub <melayoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:45:51 by melayoub          #+#    #+#             */
-/*   Updated: 2023/01/11 16:10:02 by melayoub         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:34:01 by melayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static int	count_word(char *str, char c)
 {
@@ -74,4 +74,24 @@ char	**ft_split(char const *s, char c)
 	}
 	*(str + i) = NULL;
 	return (str);
+}
+
+void	ft_putchar(char c)
+{
+	write (1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	if (nb < 0)
+	{
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+		ft_putchar(nb + '0');
 }

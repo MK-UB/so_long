@@ -1,56 +1,66 @@
-CC = cc
-# CFLAGS = -Wall -Wextra -Werror
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: melayoub <melayoub@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/11 11:20:10 by melayoub          #+#    #+#              #
+#    Updated: 2023/02/24 14:54:33 by melayoub         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
-ARCHIVE = ar -rc
+NAME_B = so_long_bonus
+HEADER = so_long.h
+HEADER_B = so_long_bonus.h
 MINILIBX = -lmlx -framework OpenGL -framework AppKit
 
-SRC = get_next_line.c gnl_utils.c libft_utils.c so_long.c
-OBJ = $(SRC:.c=.o)
+SRC = mandatory/parsing.c \
+	mandatory/parsing1.c \
+	mandatory/backtrack.c \
+	mandatory/sl_utils.c \
+	mandatory/gnl_utils.c \
+	mandatory/libft_utils.c \
+	mandatory/get_next_line.c \
+	mandatory/so_long.c \
+	mandatory/maping_setup.c \
+	mandatory/maping_making.c \
+	mandatory/player_moves.c \
+	mandatory/main.c \
 
-all : $(NAME)
-$(NAME) : $(OBJ) so_long.h
-	$(ARCHIVE) so_long.a $(OBJ)
-	$(CC) so_long.o -o so_long -L. so_long.a $(MINILIBX)
+B_SRC = bonus/parsing_bonus.c \
+	bonus/parsing1_bonus.c \
+	bonus/backtrack_bonus.c \
+	bonus/sl_utils_bonus.c \
+	bonus/gnl_utils_bonus.c \
+	bonus/libft_utils_bonus.c \
+	bonus/get_next_line_bonus.c \
+	bonus/maping_setup_bonus.c \
+	bonus/maping_making_bonus.c \
+	bonus/animation.c \
+	bonus/player_moves_bonus.c \
+	bonus/so_long_bonus.c \
+	bonus/main_bonus.c \
 
-$(OBJ) : $(SRC)
-	$(CC) -c $(CFLAGS) $^
+CC = cc 
+FLAGS = -Wall -Wextra -Werror
+RM = rm -rf
+
+all: $(NAME)
+
+bonus : $(NAME_B)
+
+$(NAME): $(SRC) $(HEADER)
+	$(CC) $(FLAGS) $(SRC) -o $(NAME) $(MINILIBX)
+
+$(NAME_B): $(B_SRC) $(HEADER_B)
+	$(CC) $(FLAGS) $(B_SRC) -o $(NAME_B) $(MINILIBX)
 
 clean:
-	rm -rf $(OBJ)
+	$(RM) $(NAME) $(NAME_B)
+
 fclean: clean
-	rm -rf $(NAME)
+	$(RM) $(bonus)
 
 re: fclean all
-
-# NAME = so_long.a
-
-# FLAGS= -Wall -Wextra -Werror
-
-# SRCS= get_next_line.c gnl_utils.c libft_utils.c so_long.c
-
-# SRCS_BONUS= get_next_line.c gnl_utils.c libft_utils.c so_long_bonus.c
-
-# OBJS= $(SRCS:.c=.o)
-
-# OBJS_BONUS= $(SRCS_BONUS:.c=.o)
-
-# all: $(NAME)
-
-# %.o: %.c so_long.h so_long_bonus.h
-# 	cc -c $(FLAGS) $<
-
-# $(NAME): $(OBJS)
-# 	@ar -r $(NAME) $(OBJS)
-
-# bonus: $(OBJS_BONUS)
-# 	@ar -r $(NAME) $(OBJS_BONUS)
-
-# clean:
-# 	@rm -f $(OBJS) $(OBJS_BONUS)
-
-# fclean:clean
-# 	@rm -f $(NAME)
-
-# re: fclean all
-
-# .PHONY: bonus all clean fclean re

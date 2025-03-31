@@ -1,4 +1,16 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: melayoub <melayoub@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 20:23:05 by melayoub          #+#    #+#             */
+/*   Updated: 2023/02/24 12:51:06 by melayoub         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../so_long.h"
 
 char	*get_next_line(int fd)
 {
@@ -80,5 +92,7 @@ char	*get_linee(char *src)
 		i++;
 	}
 	new[i] = '\0';
+	if (new[0] == '\n')
+		ft_error("empty line");
 	return (new);
 }
